@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJ_FILE="HelloWorld.csproj"
+
+usage() {
+	cat <<EOF
+Usage: $0 <command> [args]
+
+Commands:
+	build [Configuration]   Build the project (default Configuration=Debug)
+	run [args...]           Run the project (additional args passed to `dotnet run`)
+	test [Configuration]    Run unit tests with verbose output (default Configuration=Debug)
+	clean                   Remove build artifacts (bin, obj, etc.)
+	restore                 Run `dotnet restore`
+	help                    Show this help message
+
+Examples:
+	$0 build Release
+	$0 run -- --someArg
+	$0 clean
+EOF
+}
+
+ensure_dotnet() {
+	if ! command -v dotnet >/dev/null 2>&1; then
+		echo "❌ Error: dotnet CLI not found. Install .NET SDK (https://dotnet.microsoft.com/download)" >&2
+		exit 1
+	fi
+}
+
+cmd=${1:-help}
+shift || true
+
+case "$cmd" in
+	build)
+		ensure_dotnet
+		cfg=${1:-Debug}
+		echo "🔨 Building ${PROJ_FILE} (Configuration=${cfg})..."
+		if dotnet build -c "$cfg" "$PROJ_FILE"; then
+			echo -e "\n✅ Build completed"
+		else
+			echo -e "\n❌ Build failed" >&2
+			exit 1
+		fi
+		;;
+
+	run)
+		ensure_dotnet
+		echo "▶️ Running ${PROJ_FILE}..."
+		if dotnet run --project "$PROJ_FILE" -- "$@"; then
+			echo -e "\n✅ Run completed"
+		else
+			echo -e "\n❌ Run failed" >&2
+			exit 1
+		fi
+		;;
+
+	test)
+		ensure_dotnet
+		cfg=${1:-Debug}
+		echo "🧪 Running tests (Configuration=${cfg})..."
+		if dotnet test HelloWorld.Tests/HelloWorld.Tests.csproj -c "$cfg" --verbosity normal --logger "console;verbosity=normal"; then
+			echo -e "\n✅ Tests passed"
+		else
+			echo -e "\n❌ Tests failed" >&2
+			exit 1
+		fi
+		;;
+
+	clean)
+		ensure_dotnet
+		echo "🧹 Cleaning dotnet artifacts (removing 'bin' and 'obj' folders)..."
+		if dotnet clean "$PROJ_FILE" && find . -type d \( -name bin -o -name obj \) -not -path './.git/*' -prune -exec rm -rf {} +; then
+			echo -e "\n✅ Clean completed"
+		else
+			echo -e "\n❌ Clean failed" >&2
+			exit 1
+		fi
+		;;
+
+	restore)
+		ensure_dotnet
+		echo "🔁 Restoring packages..."
+		if dotnet restore "$PROJ_FILE"; then
+			echo -e "\n✅ Restore completed"
+		else
+			echo -e "\n❌ Restore failed" >&2
+			exit 1
+		fi
+		;;
+
+	help|*)
+		usage
+		;;
+esac
