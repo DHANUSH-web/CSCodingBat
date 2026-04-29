@@ -212,4 +212,17 @@ public static class Program
         
         return sum == 8;
     }
+
+    public static bool More14(int[] nums)
+    {
+        int count = 0;
+
+        foreach (int n in nums)
+        {
+            if (n == 1) count++;
+            if (n == 4) count--;
+        }
+
+        return count > 0;
+    }
 }
