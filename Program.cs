@@ -134,7 +134,7 @@ public static class Program
     public static int GreenTicket(int a, int b, int c) => a == b && b == c ? 20 : a == b || b == c || a == c ? 10 : 0;
 
     public static bool ShareDigit(int a, int b) => a / 10 == b / 10 || a / 10 == b % 10 || a % 10 == b / 10 || a % 10 == b % 10;
-    
+
     public static int Sum13(int[] nums)
     {
         if (nums.Length == 0) return 0;
@@ -188,10 +188,10 @@ public static class Program
 
     public static bool Has22(int[] nums)
     {
-        for (int i = 0; i < nums.Length-1; i++)
-            if (nums[i] == 2 && nums[i+1] == 2)
+        for (int i = 0; i < nums.Length - 1; i++)
+            if (nums[i] == 2 && nums[i + 1] == 2)
                 return true;
-        
+
         return false;
     }
 
@@ -209,7 +209,7 @@ public static class Program
 
         foreach (int n in nums)
             if (n == 2) sum += n;
-        
+
         return sum == 8;
     }
 
@@ -232,7 +232,7 @@ public static class Program
 
         for (int i = 0; i < n; i++)
             arr[i] = i;
-        
+
         return arr;
     }
 }
