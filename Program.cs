@@ -235,4 +235,13 @@ public static class Program
 
         return arr;
     }
+
+    public static bool Only14(int[] nums)
+    {
+        foreach (int n in nums)
+            if (n != 1 && n != 4)
+                return false;
+
+        return true;
+    }
 }
