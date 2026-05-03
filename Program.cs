@@ -244,4 +244,14 @@ public static class Program
 
         return true;
     }
+
+    public static string[] FizzArray2(int n)
+    {
+        string[] arr = new string[n];
+
+        for (int i = 0; i < n; i++)
+            arr[i] = i.ToString();
+        
+        return arr;
+    }
 }
