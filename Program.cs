@@ -254,4 +254,19 @@ public static class Program
         
         return arr;
     }
+
+    public static bool No14(int[] nums)
+    {
+        bool has1 = false;
+        bool has4 = false;
+
+        foreach (int n in nums)
+        {
+            if (n == 1) has1 = true;
+            if (n == 4) has4 = true;
+            if (has1 && has4) return false;
+        }
+
+        return !(has1 && has4);
+    }
 }
