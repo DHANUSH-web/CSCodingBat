@@ -269,4 +269,13 @@ public static class Program
 
         return !(has1 && has4);
     }
+
+    public static bool IsEverywhere(int[] nums, int val)
+    {
+        for (int i = 0; i < nums.Length - 1; i++)
+            if (nums[i] != val && nums[i+1] != val)
+                return false;
+
+        return true;
+    }
 }
