@@ -278,4 +278,19 @@ public static class Program
 
         return true;
     }
+
+    public static bool Either24(int[] nums)
+    {
+        bool is2 = false;
+        bool is4 = false;
+
+        for (int i = 0; i < nums.Length - 1; i++)
+        {
+            if (is2 && is4) return false;
+            if (nums[i] == 2 && nums[i+1] == 2) is2 = true;
+            if (nums[i] == 4 && nums[i+1] == 4) is4 = true;
+        }
+
+        return is2 != is4;
+    }
 }
