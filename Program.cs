@@ -134,7 +134,7 @@ public static class Program
     public static int GreenTicket(int a, int b, int c) => a == b && b == c ? 20 : a == b || b == c || a == c ? 10 : 0;
 
     public static bool ShareDigit(int a, int b) => a / 10 == b / 10 || a / 10 == b % 10 || a % 10 == b / 10 || a % 10 == b % 10;
-    
+
     public static int Sum13(int[] nums)
     {
         if (nums.Length == 0) return 0;
@@ -188,10 +188,10 @@ public static class Program
 
     public static bool Has22(int[] nums)
     {
-        for (int i = 0; i < nums.Length-1; i++)
-            if (nums[i] == 2 && nums[i+1] == 2)
+        for (int i = 0; i < nums.Length - 1; i++)
+            if (nums[i] == 2 && nums[i + 1] == 2)
                 return true;
-        
+
         return false;
     }
 
@@ -209,7 +209,88 @@ public static class Program
 
         foreach (int n in nums)
             if (n == 2) sum += n;
-        
+
         return sum == 8;
+    }
+
+    public static bool More14(int[] nums)
+    {
+        int count = 0;
+
+        foreach (int n in nums)
+        {
+            if (n == 1) count++;
+            if (n == 4) count--;
+        }
+
+        return count > 0;
+    }
+
+    public static int[] FizzArray(int n)
+    {
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++)
+            arr[i] = i;
+
+        return arr;
+    }
+
+    public static bool Only14(int[] nums)
+    {
+        foreach (int n in nums)
+            if (n != 1 && n != 4)
+                return false;
+
+        return true;
+    }
+
+    public static string[] FizzArray2(int n)
+    {
+        string[] arr = new string[n];
+
+        for (int i = 0; i < n; i++)
+            arr[i] = i.ToString();
+        
+        return arr;
+    }
+
+    public static bool No14(int[] nums)
+    {
+        bool has1 = false;
+        bool has4 = false;
+
+        foreach (int n in nums)
+        {
+            if (n == 1) has1 = true;
+            if (n == 4) has4 = true;
+            if (has1 && has4) return false;
+        }
+
+        return !(has1 && has4);
+    }
+
+    public static bool IsEverywhere(int[] nums, int val)
+    {
+        for (int i = 0; i < nums.Length - 1; i++)
+            if (nums[i] != val && nums[i+1] != val)
+                return false;
+
+        return true;
+    }
+
+    public static bool Either24(int[] nums)
+    {
+        bool is2 = false;
+        bool is4 = false;
+
+        for (int i = 0; i < nums.Length - 1; i++)
+        {
+            if (is2 && is4) return false;
+            if (nums[i] == 2 && nums[i+1] == 2) is2 = true;
+            if (nums[i] == 4 && nums[i+1] == 4) is4 = true;
+        }
+
+        return is2 != is4;
     }
 }
