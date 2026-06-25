@@ -304,4 +304,15 @@ public static class Program
 
         return count;
     }
+
+    public static bool Has77(int[] nums)
+    {
+        for (int i = 0; i < nums.Length - 2; i++)
+        {
+            if ((nums[i] == 7 && (nums[i+1] == 7 || nums[i+2] == 7)) || (nums[i+1] == 7 && nums[i+2] == 7))
+                return true;
+        }
+
+        return false;
+    }
 }
