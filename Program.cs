@@ -315,4 +315,17 @@ public static class Program
 
         return false;
     }
+
+    public static bool Has12(int[] nums)
+    {
+        bool found = false;
+
+        foreach (int n in nums)
+        {
+            if (n == 1 && !found) found = true;
+            if (n == 2 && found) return true;
+        }
+
+        return false;
+    }
 }
