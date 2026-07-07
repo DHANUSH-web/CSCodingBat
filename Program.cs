@@ -293,4 +293,39 @@ public static class Program
 
         return is2 != is4;
     }
+
+    public static int MatchUp(int[] nums1, int[] nums2)
+    {
+        int count = 0;
+
+        for (int i = 0; i < nums1.Length; i++)
+            if (nums1[i] != nums2[i] && Math.Abs(nums1[i] - nums2[i]) <= 2)
+                count++;
+
+        return count;
+    }
+
+    public static bool Has77(int[] nums)
+    {
+        for (int i = 0; i < nums.Length - 2; i++)
+        {
+            if ((nums[i] == 7 && (nums[i+1] == 7 || nums[i+2] == 7)) || (nums[i+1] == 7 && nums[i+2] == 7))
+                return true;
+        }
+
+        return false;
+    }
+
+    public static bool Has12(int[] nums)
+    {
+        bool found = false;
+
+        foreach (int n in nums)
+        {
+            if (n == 1 && !found) found = true;
+            if (n == 2 && found) return true;
+        }
+
+        return false;
+    }
 }
