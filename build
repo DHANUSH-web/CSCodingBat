@@ -60,7 +60,7 @@ case "$cmd" in
 		ensure_dotnet
 		cfg=${1:-Debug}
 		echo "🧪 Running tests (Configuration=${cfg})..."
-		if dotnet test CSCodingBat.Tests/CSCodingBat.Tests.csproj -c "$cfg" --verbosity normal --logger "console;verbosity=normal"; then
+		if dotnet test ../CSCodingBatTests/CSCodingBatTests.csproj -c "$cfg" --verbosity normal --logger "console;verbosity=normal"; then
 			echo -e "\n✅ Tests passed"
 		else
 			echo -e "\n❌ Tests failed" >&2
