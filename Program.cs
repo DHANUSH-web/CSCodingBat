@@ -1,4 +1,4 @@
-﻿namespace HelloWorld;
+﻿namespace CSCodingBat;
 
 public static class Program
 {
