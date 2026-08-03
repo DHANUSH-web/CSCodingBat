@@ -347,4 +347,27 @@ public static class Program
 
         return false;
     }
+
+    public static bool HaveThree(int[] nums)
+    {
+        int count = 0;
+        int size = nums.Length;
+
+        for (int i = 0; i < size - 1; i++)
+        {
+            if (nums[i] == 3 && nums[i+1] == 3)
+                return false;
+
+            if (nums[i] == 3 && nums[i+1] != 3)
+            {
+                count++;
+                i++;
+            }
+        }
+
+        if (size > 2 && nums[size - 1] == 3 && nums[size - 2] != 3)
+            count++;
+
+        return count == 3;
+    }
 }
