@@ -370,4 +370,34 @@ public static class Program
 
         return count == 3;
     }
+
+    public static bool TwoTwo(int[] nums)
+    {
+        if (nums.Length == 0) return true;
+        if (nums.Length == 1) return nums[0] != 2;
+
+        bool couple = false;
+        int count = 0;
+        bool only, both;
+
+        for (int i = 0; i < nums.Length - 1; i++)
+        {
+            only = (nums[i] == 2 && nums[i + 1] != 2) || (nums[i] != 2 && nums[i + 1] == 2);
+            both = nums[i] == 2 && nums[i + 1] == 2;
+
+            if (only)
+            {
+                couple = false;
+                count++;
+            }
+
+            if (both)
+            {
+                couple = true;
+                i++;
+            }
+        }
+
+        return count == 0 || couple;
+    }
 }
