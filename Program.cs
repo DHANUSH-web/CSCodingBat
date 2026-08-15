@@ -400,4 +400,13 @@ public static class Program
 
         return count == 0 || couple;
     }
+
+    public static bool SameEnds(int[] nums, int len)
+    {
+        for (int i = 0; i < len; i++)
+            if (nums[i] != nums[nums.Length - len + i])
+                return false;
+
+        return true;
+    }
 }
