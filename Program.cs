@@ -1,4 +1,4 @@
-﻿namespace HelloWorld;
+﻿namespace CSCodingBat;
 
 public static class Program
 {
@@ -326,6 +326,95 @@ public static class Program
             if (n == 2 && found) return true;
         }
 
+        return false;
+    }
+
+    public static bool ModThree(int[] nums)
+    {
+        for (int i = 0; i < nums.Length-2; i++)
+        {
+            if ((
+                nums[i]     % 2 == 0 &&
+                nums[i+1]   % 2 == 0 &&
+                nums[i+2]   % 2 == 0
+            ) || (
+                nums[i]     % 2 == 1 &&
+                nums[i+1]   % 2 == 1 &&
+                nums[i+2]   % 2 == 1
+            ))
+                return true;
+        }
+
+        return false;
+    }
+
+    public static bool HaveThree(int[] nums)
+    {
+        int count = 0;
+        int size = nums.Length;
+
+        for (int i = 0; i < size - 1; i++)
+        {
+            if (nums[i] == 3 && nums[i+1] == 3)
+                return false;
+
+            if (nums[i] == 3 && nums[i+1] != 3)
+            {
+                count++;
+                i++;
+            }
+        }
+
+        if (size > 2 && nums[size - 1] == 3 && nums[size - 2] != 3)
+            count++;
+
+        return count == 3;
+    }
+
+    public static bool TwoTwo(int[] nums)
+    {
+        if (nums.Length == 0) return true;
+        if (nums.Length == 1) return nums[0] != 2;
+
+        bool couple = false;
+        int count = 0;
+        bool only, both;
+
+        for (int i = 0; i < nums.Length - 1; i++)
+        {
+            only = (nums[i] == 2 && nums[i + 1] != 2) || (nums[i] != 2 && nums[i + 1] == 2);
+            both = nums[i] == 2 && nums[i + 1] == 2;
+
+            if (only)
+            {
+                couple = false;
+                count++;
+            }
+
+            if (both)
+            {
+                couple = true;
+                i++;
+            }
+        }
+
+        return count == 0 || couple;
+    }
+
+    public static bool SameEnds(int[] nums, int len)
+    {
+        for (int i = 0; i < len; i++)
+            if (nums[i] != nums[nums.Length - len + i])
+                return false;
+
+        return true;
+    }
+
+    public static bool TripleUp(int[] nums)
+    {
+        for (int i = 0; i < nums.Length - 2; i++)
+            if (nums[i + 1] - nums[i] == 1 && nums[i + 2] - nums[i + 1] == 1)
+                return true;
         return false;
     }
 }
