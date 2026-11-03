@@ -441,4 +441,20 @@ public static class Program
 
         return nums;
     }
+
+    public static int[] Pre4(int[] nums)
+    {
+        int index = Array.IndexOf(nums, 4);
+
+        if (index == -1) return nums;
+
+        int[] arr = new int[index];
+
+        for (int i = 0; i < index; i++)
+        {
+            arr[i] = nums[i];
+        }
+
+        return arr;
+    }
 }
